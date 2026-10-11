@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Expense Tracker | Take Control of Your Money</title>
+  <meta name="description" content="Personal Expense Tracker - Full-Stack Web Application for Bahria University Karachi Campus. Track your daily income, manage expenses, set budgets, and gain financial clarity.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    /* Landing page specific styling */
+    .landing-header {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4rem;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .landing-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-container {
+      max-width: 1200px;
+      margin: 3.5rem auto 5rem;
+      padding: 0 2rem;
+    }
+    .hero-section {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 3.5rem;
+      padding: 2.5rem 0;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-title {
+      font-size: 3.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, var(--text-main) 40%, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-card-preview {
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-card-subtle));
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+    .floating-badge {
+      position: absolute;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: float 4s ease-in-out infinite alternate;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.75rem;
+      margin-top: 4rem;
+    }
+    .feature-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: var(--transition);
+    }
+    .feature-box:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    .feature-icon-box {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .assignment-credits {
+      background: var(--bg-card-subtle);
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation (Matches Figure 1 Sitemap) -->
+  <header class="landing-header">
+    <div style="display:flex; align-items:center; gap:0.75rem;">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/></svg>
+      </div>
+      <span class="brand-title">ExpenseTracker</span>
+    </div>
+
+    <nav class="landing-nav">
+      <a href="index.html" class="font-semibold text-primary">Home</a>
+      <a href="#features" class="text-muted" style="transition:0.2s;" onmouseover="this.style.color='var(--text-main)'" onmouseout="this.style.color='var(--text-muted)'">Features</a>
+      <a href="dashboard.html" class="text-muted" style="transition:0.2s;" onmouseover="this.style.color='var(--text-main)'" onmouseout="this.style.color='var(--text-muted)'">Live Demo</a>
+      <a href="admin.html" class="text-muted" style="transition:0.2s;" onmouseover="this.style.color='var(--text-main)'" onmouseout="this.style.color='var(--text-muted)'">Admin Portal</a>
+    </nav>
+
+    <div style="display:flex; align-items:center; gap:0.85rem;">
+      <button id="themeToggleBtn" class="btn-icon" title="Toggle Theme" aria-label="Toggle Theme">
+        🌙
+      </button>
+      <a href="login.html" class="btn btn-secondary">Login</a>
+      <a href="register.html" class="btn btn-primary">Register</a>
+    </div>
+  </header>
+
+  <!-- Main Hero Section (Matches Figure 2: 1. Home / Landing Page Wireframe) -->
+  <main class="hero-container">
+    <section class="hero-section">
+      <div>
+        <div class="hero-tag">
+          <span>✨</span> Web Application Development — Assignment 2
+        </div>
+        <h1 class="hero-title">
+          Take Control of Your Money
+        </h1>
+        <p class="hero-subtitle">
+          Track your daily income, manage monthly expenses, set proactive budget limits, and gain clear financial insights with interactive analytics.
+        </p>
+        <div class="hero-buttons">
+          <a href="dashboard.html" class="btn btn-primary" style="padding:0.85rem 1.75rem; font-size:1.05rem;">
+            <span>Get Started</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="login.html" class="btn btn-secondary" style="padding:0.85rem 1.5rem; font-size:1.05rem;">
+            Sign In
+          </a>
+        </div>
+        <div style="display:flex; gap:2rem; margin-top:2.5rem; color:var(--text-muted); font-size:0.9rem;">
+          <div><strong style="color:var(--text-main); font-size:1.2rem; display:block;">100%</strong> Local & Secure</div>
+          <div><strong style="color:var(--text-main); font-size:1.2rem; display:block;">Real-Time</strong> Analytics</div>
+          <div><strong style="color:var(--text-main); font-size:1.2rem; display:block;">Budget</strong> Alerts</div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card (Depicting wireframe balance & live data) -->
+      <div class="hero-card-preview">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+          <div>
+            <span class="text-xs text-muted" style="text-transform:uppercase; letter-spacing:0.05em;">Current Balance</span>
+            <div style="font-size:2.25rem; font-weight:800; color:var(--text-main);">$1,300.00</div>
+          </div>
+          <span class="badge badge-income" style="font-size:0.85rem;">+24.5% this month</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+          <div style="background:var(--accent-income-light); border-radius:var(--radius-md); padding:1rem;">
+            <div class="text-xs" style="color:var(--accent-income); font-weight:600;">TOTAL INCOME</div>
+            <div style="font-size:1.35rem; font-weight:700; color:var(--accent-income);">$2,500.00</div>
+          </div>
+          <div style="background:var(--accent-expense-light); border-radius:var(--radius-md); padding:1rem;">
+            <div class="text-xs" style="color:var(--accent-expense); font-weight:600;">TOTAL EXPENSES</div>
+            <div style="font-size:1.35rem; font-weight:700; color:var(--accent-expense);">$1,200.00</div>
+          </div>
+        </div>
+
+        <!-- Sample Transaction Rows -->
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0.85rem; border-radius:var(--radius-sm); background:var(--bg-card); border:1px solid var(--border-color);">
+            <div style="display:flex; align-items:center; gap:0.65rem;">
+              <span>💼</span>
+              <div>
+                <div style="font-size:0.875rem; font-weight:600;">Monthly Salary</div>
+                <div class="text-xs text-muted">10 Apr 2025</div>
+              </div>
+            </div>
+            <span class="font-bold text-income">+$2,500</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0.85rem; border-radius:var(--radius-sm); background:var(--bg-card); border:1px solid var(--border-color);">
+            <div style="display:flex; align-items:center; gap:0.65rem;">
+              <span>🍔</span>
+              <div>
+                <div style="font-size:0.875rem; font-weight:600;">Food & Groceries</div>
+                <div class="text-xs text-muted">12 Apr 2025</div>
+              </div>
+            </div>
+            <span class="font-bold text-expense">-$50</span>
+          </div>
+        </div>
+
+        <!-- Floating Badge -->
+        <div class="floating-badge" style="bottom:-20px; right:-15px;">
+          <span style="font-size:1.25rem;">🎯</span>
+          <div>
+            <div style="font-size:0.8rem; font-weight:700;">Budget Safe</div>
+            <div class="text-xs text-muted">70% utilized</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" style="margin-top:5rem;">
+      <div style="text-align:center; max-width:650px; margin:0 auto 3rem;">
+        <span class="hero-tag">System Modules</span>
+        <h2 class="text-3xl font-bold" style="margin-bottom:0.75rem;">Engineered for Complete Financial Control</h2>
+        <p class="text-muted">Explore the functional modules designed per our project proposal specifications.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon-box">📊</div>
+          <h3 class="text-lg font-bold" style="margin-bottom:0.5rem;">Dynamic Dashboard</h3>
+          <p class="text-muted text-sm">Instant visual overview of total income, current expenses, net savings balance, and recent transaction log.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-box">💳</div>
+          <h3 class="text-lg font-bold" style="margin-bottom:0.5rem;">CRUD Transactions</h3>
+          <p class="text-muted text-sm">Record, edit, update, and delete income and expense items with customizable categories, dates, and amounts.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-box">🎯</div>
+          <h3 class="text-lg font-bold" style="margin-bottom:0.5rem;">Budget Planner</h3>
+          <p class="text-muted text-sm">Define monthly category caps, monitor progress bars in real-time, and prevent budget overspending.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-box">📈</div>
+          <h3 class="text-lg font-bold" style="margin-bottom:0.5rem;">Reports & Analytics</h3>
+          <p class="text-muted text-sm">Visual category distribution breakdown and cash flow trends powered by high-performance interactive charts.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- University Assignment Credits Box -->
+    <section class="assignment-credits">
+      <div style="display:inline-block; font-size:0.85rem; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.5rem;">
+        Bahria University — Karachi Campus
+      </div>
+      <h3 class="text-xl font-bold" style="margin-bottom:0.5rem;">Web Application Development (Assignment 2 — Frontend)</h3>
+      <p class="text-muted text-sm" style="margin-bottom:1rem;">
+        <strong>Submitted to:</strong> Ms. Mahnoor Tariq &bull; 
+        <strong>Group Members:</strong> Amna Yousaf (02-115242-091), Hafsah Sabih (02-115242-011), Faraz Tariq (02-115242-089), Haseeb Zahid (02-115242-130)
+      </p>
+      <div style="display:flex; justify-content:center; gap:1rem;">
+        <a href="dashboard.html" class="btn btn-primary btn-sm">Launch Dashboard</a>
+        <a href="admin.html" class="btn btn-secondary btn-sm">Admin View</a>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top:1px solid var(--border-color); padding:2rem; text-align:center; color:var(--text-muted); font-size:0.875rem;">
+    &copy; 2025 - 2026 Personal Expense Tracker. Developed for Web Application Development Assignment 2.
+  </footer>
+
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

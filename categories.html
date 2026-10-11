@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories | Personal Expense Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .category-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .category-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .category-card-accent-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+    }
+    .category-icon-bubble {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    /* Preset color swatches */
+    .color-swatch-list {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .color-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.2s ease;
+    }
+    .color-swatch:hover, .color-swatch.active {
+      transform: scale(1.2);
+      border-color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">₹</div>
+        <span class="brand-title">ExpenseTracker</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="transactions.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Transactions</span>
+        </a>
+
+        <a href="categories.html" class="nav-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          <span>Categories</span>
+        </a>
+
+        <a href="reports.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Reports & Analytics</span>
+        </a>
+
+        <a href="budget.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>Budget Planner</span>
+        </a>
+
+        <a href="profile.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Profile / Settings</span>
+        </a>
+
+        <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--border-color);">
+          <a href="admin.html" class="nav-link" style="color:var(--primary); font-weight:600;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Admin Portal</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="#" class="nav-link logout-trigger" style="color:var(--accent-expense);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <header class="top-navbar">
+        <div class="nav-left">
+          <button id="sidebarToggleBtn" class="menu-toggle-btn btn-icon" aria-label="Toggle Navigation">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <h1 class="text-xl font-bold">Category Management</h1>
+        </div>
+
+        <div class="nav-right">
+          <button id="themeToggleBtn" class="btn-icon" title="Toggle Theme" aria-label="Toggle Theme">
+            🌙
+          </button>
+          <a href="profile.html" class="user-profile-badge">
+            <div class="user-avatar" id="headerUserAvatar">AY</div>
+            <div style="text-align:left; line-height:1.2;">
+              <div class="text-xs font-semibold" id="headerUserName">Amna Yousaf</div>
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Body (Matches Wireframe 7. Categories Page) -->
+      <main class="content-body">
+        
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.75rem; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h2 class="text-2xl font-bold">Categories Directory</h2>
+            <p class="text-muted text-sm">Organize spending with custom color-coded categories.</p>
+          </div>
+          <button id="btnOpenAddCategory" class="btn btn-primary btn-sm">
+            + Add Category
+          </button>
+        </div>
+
+        <!-- Category Grid Cards -->
+        <div class="categories-grid" id="categoriesContainer">
+          <!-- Populated by JS -->
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Add / Edit Category Modal -->
+  <div class="modal-overlay" id="categoryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="text-lg font-bold" id="categoryModalTitle">Add New Category</h3>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="categoryForm">
+        <input type="hidden" id="catId">
+
+        <div class="form-group">
+          <label for="catName" class="form-label">Category Name</label>
+          <input type="text" id="catName" class="form-control" placeholder="e.g. Travel, Gym, Books" required>
+        </div>
+
+        <div class="form-group">
+          <label for="catType" class="form-label">Category Classification</label>
+          <select id="catType" class="form-control" required>
+            <option value="expense">Expense Category</option>
+            <option value="income">Income Category</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="catIcon" class="form-label">Emoji Icon</label>
+          <select id="catIcon" class="form-control">
+            <option value="🍔">🍔 Food & Dining</option>
+            <option value="🚗">🚗 Transport & Fuel</option>
+            <option value="💡">💡 Utilities & Bills</option>
+            <option value="🛍️">🛍️ Shopping & Apparel</option>
+            <option value="🎓">🎓 Education & Study</option>
+            <option value="🏥">🏥 Medical & Health</option>
+            <option value="✈️">✈️ Travel & Vacation</option>
+            <option value="🎮">🎮 Entertainment & Gaming</option>
+            <option value="💼">💼 Salary & Employment</option>
+            <option value="💻">💻 Freelance & Gigs</option>
+            <option value="🎁">🎁 Allowance & Gifts</option>
+            <option value="📈">📈 Investments</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="catColor" class="form-label">Category Accent Color</label>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <input type="color" id="catColor" class="form-control" value="#4f46e5" style="width:50px; height:42px; padding:2px; cursor:pointer;">
+            <span id="catColorCode" style="font-family:monospace; font-weight:600; font-size:0.9rem;">#4f46e5</span>
+          </div>
+
+          <!-- Quick Palette Swatches -->
+          <div class="color-swatch-list">
+            <span class="color-swatch" style="background:#f59e0b;" onclick="selectColorSwatch('#f59e0b')" title="Amber"></span>
+            <span class="color-swatch" style="background:#3b82f6;" onclick="selectColorSwatch('#3b82f6')" title="Blue"></span>
+            <span class="color-swatch" style="background:#ef4444;" onclick="selectColorSwatch('#ef4444')" title="Red"></span>
+            <span class="color-swatch" style="background:#ec4899;" onclick="selectColorSwatch('#ec4899')" title="Pink"></span>
+            <span class="color-swatch" style="background:#8b5cf6;" onclick="selectColorSwatch('#8b5cf6')" title="Purple"></span>
+            <span class="color-swatch" style="background:#10b981;" onclick="selectColorSwatch('#10b981')" title="Emerald"></span>
+            <span class="color-swatch" style="background:#06b6d4;" onclick="selectColorSwatch('#06b6d4')" title="Cyan"></span>
+            <span class="color-swatch" style="background:#4f46e5;" onclick="selectColorSwatch('#4f46e5')" title="Indigo"></span>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/categories.js"></script>
+</body>
+</html>
